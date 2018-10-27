@@ -1,0 +1,20 @@
+<div class="goal-investment-calculator row">
+    <div class="col-xs-12 col-sm-4">
+        <label for="goal-investment">Investment</label>
+        <input id="goal-investment" name="goal-investment" type="number" (blur)="onInputChange('investment', investment.value)"
+            #investment>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+        <label for="goal-period">Period</label>
+        <input id="goal-period" name="goal-period" type="number" (blur)="onInputChange('period', period.value)" #period>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+        <label for="goal-balance">Balance</label>
+        <input id="goal-balance" name="goal-balance" type="number" [value]="balance" disabled>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <button (click)="calculate()">Calculate</button>
+    </div>
+</div>

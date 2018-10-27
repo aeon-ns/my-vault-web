@@ -1,0 +1,77 @@
+<form
+    #form="ngForm"
+    (ngSubmit)="handleSubmit(form.value, form.valid)"
+    novalidate
+>
+    <div>
+        Goal Title:
+        <input
+            type="text"
+            name="title"
+            [ngModel]="detail?.title"
+            required
+            pattern="[^0-9]*"
+            #title="ngModel"
+        >
+        <div
+            class="error"
+            *ngIf="title.errors?.required && title.dirty"
+        >Title is required.</div>
+        <div
+            class="error"
+            *ngIf="title.errors?.pattern && title.dirty"
+        >Invalid Title</div>
+    </div>
+
+    <div>
+        Goal ID:
+        <input
+            type="number"
+            name="id"
+            [ngModel]="detail?.id"
+            required
+            #id="ngModel"
+        >
+        <div
+            class="error"
+            *ngIf="id.errors?.required && id.dirty"
+        >ID is required.</div>
+    </div>
+
+    <div>
+        <label>
+            Goal Added
+            <input
+                type="checkbox"
+                name="isAdded"
+                [ngModel]="detail?.isAdded"
+                (ngModelChange)="toggleAdd($event)"
+            >
+        </label>
+    </div>
+
+    <div>
+        Timeframe
+        <select
+            name="timeframe"
+            [ngModel]="detail?.timeframe"
+        >
+            <option
+                *ngFor="let time of timeframes"
+                [value]="time.key"
+            >{{ time.value }}</option>
+        </select>
+    </div>
+
+    <div *ngIf="form.value.isAdded">
+        Goal added on: {{ detail?.timestamp | date: 'dd/MM/yyyy => HH:mm:ss' }}
+    </div>
+
+    <button
+        type="submit"
+        [disabled]="form.invalid"
+    >
+        Update Goal
+    </button>
+
+</form>

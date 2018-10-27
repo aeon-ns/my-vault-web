@@ -1,0 +1,11 @@
+<div class="goal-viewer">
+    <button (click)="goBack()">
+        &lsaquo; Go Back
+    </button>
+    <br>
+    <goal-form
+        [detail]="goal"
+        (update)="onUpdateGoal($event)"
+    >
+    </goal-form>
+</div>

@@ -1,0 +1,30 @@
+<div *ngFor="let goal of goals; let i = index;">
+    <h3 [innerHTML]="goal.title | uppercase" (click)="viewGoal(goal)"></h3>
+    <p [innerHTML]="goal.description"></p>
+    <ul>
+        <template
+            ngFor
+            let-point
+            let-i="index+1"
+            [ngForOf]="goal.points"
+        >
+            <li>{{i}}. {{point}}</li>
+        </template>
+    </ul>
+
+    <goal-information
+        *ngIf="goal.isAdded"
+        [goal]="goal"
+        (update)="handleUpdate($event)"
+        (remove)="handleRemove(goal.id)"
+    ></goal-information>
+
+    <goal-investment-calculator *ngIf="goal.isAdded"></goal-investment-calculator>
+
+    <br>
+    <button
+        *ngIf="!goal.isAdded"
+        class="green"
+        (click)="onAdd(i)"
+    >Add Goal</button>
+</div>

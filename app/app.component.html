@@ -1,0 +1,19 @@
+<div class="app">
+
+  <!-- <goals></goals> -->
+  <!-- <goal-viewer></goal-viewer> -->
+  <nav>
+    <a
+      *ngFor="let item of nav;"
+      [routerLink]="item.link"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: item.exact }"
+    >
+    {{item.name}}
+    </a>
+  </nav>
+
+  <!-- Node where our component will be injected based on the route -->
+  <router-outlet></router-outlet>
+
+</div>

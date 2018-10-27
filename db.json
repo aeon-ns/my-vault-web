@@ -1,0 +1,29 @@
+{
+  "goals": [
+    {
+      "title": "Protect my income",
+      "id": 0,
+      "isAdded": true,
+      "timeframe": ">5-<10",
+      "timestamp": 1538475690868
+    },
+    {
+      "title": "Protect my income",
+      "id": 2,
+      "isAdded": false,
+      "timeframe": ">2-<5"
+    },
+    {
+      "id": 3,
+      "image": "assets/images/goal3.jpg",
+      "title": "Retire right",
+      "description": "As Australia's cost of living continues to rise, it's important to make sure your money goes the distance in retirement to give you the lifestyle you want.",
+      "points": [
+        "Will I have enough super?",
+        "Will I be eligible for the Age Pension?",
+        "Will I work less, stop working or do something different?"
+      ],
+      "isAdded": false
+    }
+  ]
+}
