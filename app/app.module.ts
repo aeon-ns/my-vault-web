@@ -1,8 +1,8 @@
 /* Angular Modules */
-import { NgModule } from "@angular/core"; // Used to create our app module
-import { BrowserModule } from "@angular/platform-browser"; // Used to run ts directly in browser
-import { CommonModule } from "@angular/common"; // Used to fetch all angular provided directives, pipes etc.
-import { RouterModule, Routes } from "@angular/router"; // Used for router related stuff
+import { NgModule } from "@angular/core";                   // Used to create our app module
+import { BrowserModule } from "@angular/platform-browser";  // Used to run ts directly in browser
+import { CommonModule } from "@angular/common";             // Used to fetch all angular provided directives, pipes etc.
+import { RouterModule, Routes } from "@angular/router";     // Used for router related stuff
 import { HttpModule } from "@angular/http";
 
 /* Our Modules */
