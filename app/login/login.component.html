@@ -1,0 +1,58 @@
+<div
+    class="uk-card uk-card-default uk-child-width-1-2 uk-height-viewport"
+    uk-grid
+>
+    <div class="uk-card-media-left uk-cover-container">
+        <img
+            src="../../images/locker.jpg"
+            alt=""
+            uk-cover
+        >
+    </div>
+    <div class="uk-card-body">
+        <h1 class="uk-heading-primary">Login</h1>
+        <form (onsubmit)="logIn(username,password)">
+            <div class="form-row">
+                <div class="uk-inline uk-width-1-1">
+                    <span
+                        class="uk-form-icon"
+                        uk-icon="icon: user"
+                    ></span>
+                    <input
+                        class="uk-input"
+                        type="text"
+                        id="username"
+                        placeholder="Username"
+                        #username
+                    >
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="uk-inline uk-width-1-1">
+                    <span
+                        class="uk-form-icon"
+                        uk-icon="icon: lock"
+                    ></span>
+                    <input
+                        class="uk-input"
+                        type="password"
+                        id="password"
+                        placeholder="Password"
+                        autocomplete="true"
+                        #password
+                    >
+                </div>
+            </div>
+            <div class="form-row">
+                <button
+                    type="button"
+                    (click)="logIn(username.value, password.value)"
+                    class="uk-button uk-button-primary uk-width-1-1"
+                    uk-tooltip="title: Click here to Log In"
+                >
+                    Login <span uk-icon="icon: sign-in"></span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
