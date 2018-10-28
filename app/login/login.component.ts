@@ -7,6 +7,7 @@ import { UserService } from "./providers/user.service";
     templateUrl: "login.component.html"
 })
 export class LoginComponent {
+    showLogin: boolean = true;
     constructor(private userService: UserService) {}
     logIn(username: string, password: string) {
         this.userService

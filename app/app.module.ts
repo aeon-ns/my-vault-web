@@ -16,7 +16,8 @@ import { UserService } from "./login/providers/user.service";
 /* Our Routes */
 const ROUTES: Routes = [
     { path: "", component: LoginComponent, pathMatch: "full" },
-    // { path: 'register', component: LoginComponent, pathMatch: 'full' },
+    { path: "login", component: LoginComponent, pathMatch: "full" },
+    // { path: 'register', component: RegComponent, pathMatch: 'full' },
     { path: "**", component: NotFoundComponent }
 ];
 

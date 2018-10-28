@@ -1,12 +1,22 @@
 <div class="goal-information row">
     <div class="col-xs-12 col-sm-6">
         <label for="goal-amount">Amount Required</label>
-        <input id="goal-amount" name="goal-amount" type="number" [value]="goal.amount" (blur)="onChange('amount', amount.value)"
-            #amount>
+        <input
+            id="goal-amount"
+            name="goal-amount"
+            type="number"
+            [value]="goal.amount"
+            (blur)="onChange('amount', amount.value)"
+            #amount
+        >
     </div>
     <div class="col-xs-12 col-sm-6">
         <label for="goal-timeframe">Timeframe</label>
-        <select id="goal-timeframe" name="goal-timeframe" [value]="goal.timeframe">
+        <select
+            id="goal-timeframe"
+            name="goal-timeframe"
+            [value]="goal.timeframe"
+        >
             <option value="2 - 5 Years">2 - 5 Years</option>
             <option value="5 - 10 Years">5 - 10 Years</option>
             <option value="10+ Years">10+ Years</option>
@@ -15,6 +25,9 @@
 </div>
 <div class="row">
     <div class="col-xs-12">
-        <button class="red" (click)="onRemove()">Remove Goal</button>
+        <button
+            class="red"
+            (click)="onRemove()"
+        >Remove Goal</button>
     </div>
 </div>
