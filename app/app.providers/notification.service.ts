@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+declare var UIkit: any;
 
 @Injectable()
 export class Notify {
