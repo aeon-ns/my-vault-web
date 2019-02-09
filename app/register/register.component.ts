@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
-import { UserService } from "../app.providers/user.service";
 import { Router } from "@angular/router";
 import { Notify } from "../app.providers/notification.service";
+import { UserService } from "../app.providers/user.service";
 
 interface ApiResponse {
     success: boolean,

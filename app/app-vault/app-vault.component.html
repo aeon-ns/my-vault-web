@@ -1,0 +1,29 @@
+<nav class="uk-navbar-container" uk-navbar>
+    <div class="uk-navbar-left">
+        <button
+            class="uk-navbar-item uk-button uk-button-text"
+            *ngFor="let item of nav"
+            [routerLink]="item.link"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: item.exact }"
+        >
+            <span>
+                {{ item.name }}
+            </span>
+        </button>
+    </div>
+    <div class="uk-navbar-center"></div>
+    <div class="uk-navbar-right">
+        <div class="uk-navbar-item">
+            <div class="uk-inline">
+                <span class="uk-form-icon" uk-icon="icon: search"></span>
+                <input class="uk-input" type="text" />
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="vault-content">
+    <!-- Content Goes Here -->
+    <router-outlet></router-outlet>
+</div>

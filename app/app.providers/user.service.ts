@@ -6,8 +6,8 @@ import "rxjs/add/operator/map";
 import "rxjs/add/operator/catch";
 import "rxjs/add/observable/throw";
 
-import { API } from "../../config/api.config";
-import { Credentials } from "../../models/credentials.interface";
+import { API } from "../config/api.config";
+import { Credentials } from "../models/credentials.interface";
 
 
 @Injectable()

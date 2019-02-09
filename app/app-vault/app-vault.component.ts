@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, ElementRef, ViewChild } from "@angular/core";
 
 interface Nav {
     link: string;
@@ -12,20 +12,26 @@ interface Nav {
     templateUrl: "app-vault.component.html"
 })
 export class VaultComponent {
+
     nav: Nav[] = [
         {
-            link: "/",
+            link: "/vault",
             name: "Home",
             exact: true
         },
         {
-            link: "/",
-            name: "Login",
+            link: "/vault/notes",
+            name: "Notes",
             exact: true
         },
         {
-            link: "/goals",
-            name: "Goals",
+            link: "/vault/pwords",
+            name: "Passwords",
+            exact: false
+        },
+        {
+            link: "/vault/cards",
+            name: "Cards",
             exact: false
         }
     ];
