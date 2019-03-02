@@ -1,6 +1,7 @@
 import { CustomField } from "./custom-field.interface";
 
 export interface Card {
+    _id?: string,
     title: string;
     cardNo: number[];
     exp: Date;
