@@ -15,8 +15,8 @@ import { LoginComponent } from "./login/login.component";
 import { RegisterComponent } from "./register/register.component";
 
 /* Our Providers */
-import { UserService } from "./app.providers/user.service";
-import { Notify } from "./app.providers/notification.service";
+import { UserService } from "./providers/user.service";
+import { Notify } from "./providers/notification.service";
 
 /* Our Routes */
 import { ROUTES } from "./app.routes";

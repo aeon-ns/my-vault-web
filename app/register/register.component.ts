@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
-import { Notify } from "../app.providers/notification.service";
-import { UserService } from "../app.providers/user.service";
+import { UserService } from "../providers/user.service";
+import { Notify } from "../providers/notification.service";
 import { ApiResponse } from "../models/api-response.interface";
 import { User } from "../models/user.interface";
 

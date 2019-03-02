@@ -1,8 +1,8 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
-import { UserService } from "../app.providers/user.service";
+import { UserService } from "../providers/user.service";
+import { Notify } from "../providers/notification.service";
 import { ApiResponse } from "../models/api-response.interface";
-import { Notify } from "../app.providers/notification.service";
 
 interface Nav {
     link: string;
@@ -48,13 +48,13 @@ export class VaultComponent {
     logout() {
         this.userService.logout().subscribe(
             (success: ApiResponse) => {
-                console.log("[VaultComp][logout]: success", success);
+                console.log("@VaultComp.logout: success", success);
                 window.localStorage.removeItem('token');
                 this.notify.success(success.message);
                 this.router.navigate(["/login"]);
             },
             (error: ApiResponse) => {
-                console.log("[VaultComp][logout]: error", error);
+                console.log("@VaultComp.logout: error", error);
             }
         );
     }
