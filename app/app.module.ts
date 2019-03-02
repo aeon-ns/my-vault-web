@@ -8,10 +8,13 @@ import { HttpModule } from "@angular/http";
 /* Our Modules */
 import { VaultModule } from "./app-vault/app-vault.module";
 
-/* Our Component */
+/* Our Components */
 import { AppComponent } from "./app.component";
 import { NotFoundComponent } from "./not-found.component";
 import { LoginComponent } from "./login/login.component";
+import { RegisterComponent } from "./register/register.component";
+
+/* Our Providers */
 import { UserService } from "./app.providers/user.service";
 import { Notify } from "./app.providers/notification.service";
 
@@ -26,11 +29,13 @@ import { ROUTES } from "./app.routes";
         RouterModule.forRoot(ROUTES, { useHash: true }),
         VaultModule
     ],
-    declarations: [AppComponent, LoginComponent, NotFoundComponent],
-    providers: [
-        UserService,
-        Notify
+    declarations: [
+        AppComponent,
+        LoginComponent,
+        RegisterComponent,
+        NotFoundComponent
     ],
+    providers: [UserService, Notify],
     bootstrap: [AppComponent]
 })
 export class AppModule {}

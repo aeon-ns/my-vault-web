@@ -3,7 +3,31 @@
 </div>
 <div class="uk-card-body login-box uk-position-center">
     <h1 class="uk-heading-primary uk-text-center oswald">myVault</h1>
-    <form (onsubmit)="logIn(username, password)">
+    <form>
+        <div class="form-row">
+            <div class="uk-inline uk-width-1-1">
+                <!-- <span class="uk-form-icon" uk-icon="icon: user"></span> -->
+                <input
+                    #firstname
+                    class="uk-input"
+                    type="text"
+                    id="firstname"
+                    placeholder="First Name"
+                />
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="uk-inline uk-width-1-1">
+                <!-- <span class="uk-form-icon" uk-icon="icon: user"></span> -->
+                <input
+                    #lastname
+                    class="uk-input"
+                    type="text"
+                    id="lastname"
+                    placeholder="Last Name"
+                />
+            </div>
+        </div>
         <div class="form-row">
             <div class="uk-inline uk-width-1-1">
                 <span class="uk-form-icon" uk-icon="icon: user"></span>
@@ -35,17 +59,29 @@
         <div class="form-row">
             <button
                 type="button"
-                (click)="logIn(username.value, password.value)"
+                (click)="
+                    register(
+                        username.value,
+                        password.value,
+                        firstname.value,
+                        lastname.value
+                    )
+                "
                 class="uk-button uk-button-primary uk-width-1-1"
-                uk-tooltip="title: Click here to Log In"
+                uk-tooltip="title: Click here to register a new account"
             >
-                Login <span uk-icon="icon: sign-in"></span>
+                Register <i class="fas fa-user-plus"></i>
             </button>
         </div>
     </form>
     <div class="form-row">
-        <button class="uk-button uk-button-default uk-width-1-1">
-            New User? Register <i class="fas fa-user-plus"></i>
+        <button
+            type="button"
+            class="uk-button uk-button-default uk-width-1-1"
+            [routerLink]="'/login'"
+            uk-tooltip="title: Click here to login to existing account"
+        >
+            Existing User? Login <span uk-icon="icon: sign-in"></span>
         </button>
     </div>
 </div>

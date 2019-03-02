@@ -2,44 +2,70 @@ import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 import { Notify } from "../app.providers/notification.service";
 import { UserService } from "../app.providers/user.service";
-
-interface ApiResponse {
-    success: boolean,
-    message: string,
-    data?: any
-}
+import { ApiResponse } from "../models/api-response.interface";
+import { User } from "../models/user.interface";
 
 @Component({
-    selector: "app-login",
-    styleUrls: ["login.component.scss"],
-    templateUrl: "login.component.html"
+    selector: "app-register",
+    styleUrls: ["register.component.scss"],
+    templateUrl: "register.component.html"
 })
-export class LoginComponent {
-    showLogin: boolean = true;
+export class RegisterComponent {
+    constructor(
+        private router: Router,
+        private userService: UserService,
+        private notify: Notify
+    ) {}
 
-    constructor( private router: Router, private userService: UserService, private notify: Notify) {}
-
-    logIn(username: string, password: string) {
+    register(
+        username: string,
+        password: string,
+        firstname: string,
+        lastname: string
+    ) {
         if (!username || !password) {
-            return this.notify.warn('Please provide a username & password.');
+            return this.notify.warn(
+                `Please provide the following fields: <br> ${
+                    !username && !password
+                        ? "Username, Password"
+                        : !username
+                        ? "Username"
+                        : "Password"
+                }`
+            );
         }
-        this.userService.login({ username, password }).subscribe(
+        let newUser: User = {
+            username: username,
+            password: password
+        };
+        if (firstname) {
+            newUser.firstname = firstname;
+        }
+        if (lastname) {
+            newUser.lastname = lastname;
+        }
+        this.userService.register(newUser).subscribe(
             (success: ApiResponse) => {
-                console.log("Login:: Success: ", success);
-                window.localStorage.setItem('token', success.data.token);
+                console.log("Register:: Success: ", success);
                 this.notify.success(success.message);
-                // this.router.navigate(['/vault']);
+                this.router.navigate(['/login']);
             },
             (error: ApiResponse) => {
-                console.log("Login:: Error: ", error);
+                console.log("Register:: Error: ", error);
                 this.notify.error(error.message);
             }
         );
     }
 
-    submitOnEnter(event: any, username: string, password: string) {
+    submitOnEnter(
+        event: any,
+        username: string,
+        password: string,
+        firstname: string,
+        lastname: string
+    ) {
         if (event.which === 13) {
-            this.logIn(username, password);
+            this.register(username, password, firstname, lastname);
         }
     }
 }

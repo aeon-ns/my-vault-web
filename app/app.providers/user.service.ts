@@ -1,4 +1,4 @@
-import { Http, Response, Headers, RequestOptions } from "@angular/http";
+import { Http, Response } from "@angular/http";
 import { Injectable } from "@angular/core";
 
 import { Observable } from "rxjs/Observable";
@@ -7,32 +7,26 @@ import "rxjs/add/operator/catch";
 import "rxjs/add/observable/throw";
 
 import { API } from "../config/api.config";
-import { Credentials } from "../models/credentials.interface";
-
+import { User } from "../models/user.interface";
+import { ApiResponse } from "../models/api-response.interface";
 
 @Injectable()
 export class UserService {
     constructor(private http: Http) {}
 
-    login(userCredentials: Credentials): Observable<any> {
+    login(user: User): Observable<ApiResponse> {
         return this.http
-            .post(`${API.BASE}/${API.USERS}/${API.LOGIN}`, userCredentials)
+            .post(`${API.BASE}/${API.USERS}/${API.LOGIN}`, user)
             .map((response: Response) => response.json())
             .catch((error: any) => Observable.throw(error.json()));
     }
-    
-    // updateGoal(goal: Goal): Observable<Goal> {
-    //     let headers = new Headers({
-    //         "x-auth-token": "some_auth_token"
-    //     });
-    //     let options = new RequestOptions({
-    //         headers: headers
-    //     });
-    //     return this.http
-    //         .put(`${GOALS_API}/${goal.id}`, goal, options)
-    //         .map((response: Response) => response.json())
-    //         .catch((error: any) => Observable.throw(error.json()));
-    // }
+
+    register(user: User): Observable<ApiResponse> {
+        return this.http
+            .post(`${API.BASE}/${API.USERS}/${API.REGISTER}`, user)
+            .map((response: Response) => response.json())
+            .catch((error: any) => Observable.throw(error.json()));
+    }
 
     // removeGoal(goal: Goal): Observable<Goal> {
     //     return this.http
