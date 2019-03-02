@@ -78,9 +78,23 @@ h4 {
 } */
 
 .oswald {
-  font-family: Oswald;
+    font-family: Oswald;
 }
 
 .notify-message {
-  font-size: 16px;
+    font-size: 16px;
+}
+
+.uk-notification {
+    max-width: 95%;
+    width: 450px;
+}
+
+.uk-notification-bottom-center,
+.uk-notification-top-center {
+    margin-left: unset;
+    transform: translate(-50%);
+    -webkit-transform: translate(-50%);
+    -o-transform: translate(-50%);
+    -moz-transform: translate(-50%);
 }

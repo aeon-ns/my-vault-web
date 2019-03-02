@@ -2,3 +2,14 @@
     background-color: #3a4250;
     min-height: calc(100vh - 80px);
 }
+
+nav {
+    .active {
+        background-color: #3a4250;
+        color: #fff;
+        font-weight: bold;
+        &::before {
+            border-color: #fff;
+        }
+    }
+}
