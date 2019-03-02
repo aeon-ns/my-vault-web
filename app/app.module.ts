@@ -11,8 +11,8 @@ import { VaultModule } from "./app-vault/app-vault.module";
 /* Our Components */
 import { AppComponent } from "./app.component";
 import { NotFoundComponent } from "./not-found.component";
-import { LoginComponent } from "./login/login.component";
-import { RegisterComponent } from "./register/register.component";
+import { LoginComponent } from "./components/login/login.component";
+import { RegisterComponent } from "./components/register/register.component";
 
 /* Our Providers */
 import { UserService } from "./providers/user.service";

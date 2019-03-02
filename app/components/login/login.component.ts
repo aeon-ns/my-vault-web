@@ -1,8 +1,8 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
-import { UserService } from "../providers/user.service";
-import { Notify } from "../providers/notification.service";
-import { ApiResponse } from "../models/api-response.interface";
+import { UserService } from "../../providers/user.service";
+import { Notify } from "../../providers/notification.service";
+import { ApiResponse } from "../../models/api-response.interface";
 
 @Component({
     selector: "app-login",
