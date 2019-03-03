@@ -1,7 +1,26 @@
 <div>
-    <h3>Notes :</h3>
-    <span>You have following notes:</span>
+    <div class="sub-nav">
+        <div class="uk-width-1-1 uk-inline">
+            Your notes :
+            <span
+                class="uk-float-right uk-badge"
+                [innerHtml]="'Total: ' + notes?.length"
+            ></span>
+        </div>
+    </div>
 
-    <p>Notes: {{ notes?.length }}</p>
-    
+    <div class="notes-container">
+        <div class="note" *ngFor="let note of notes">
+            <div class="uk-card uk-card-default uk-card-body">
+                <span>
+                    <span uk-icon="tag"></span>
+                    {{ note.account ? "Work" : "Personal" }}
+                </span>
+                <span *ngIf="note.pinned" uk-icon="bookmark"></span>
+
+                <h3 class="uk-card-title" [innerHtml]="note.title"></h3>
+                <p [innerHtml]="note.note"></p>
+            </div>
+        </div>
+    </div>
 </div>

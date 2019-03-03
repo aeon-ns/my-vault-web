@@ -1,0 +1,35 @@
+.sub-nav {
+    background-color: #3a4250;
+    margin: -15px -15px 0;
+    padding: 15px;
+    box-shadow: 0px 1px 8px #000;
+}
+
+.notes-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.note {
+    padding: 18px;
+
+    .uk-card {
+        background-image: url("images/white-waves.png");
+        transition: all 0.25s ease-in-out;
+        -moz-transition: all 0.25s ease-in-out;
+        -o-transition: all 0.25s ease-in-out;
+        -webkit-transition: all 0.25s ease-in-out;
+
+        width: 320px;
+
+        &:hover {
+            box-shadow: 0px 0px 2px #444;
+            transform: scale(1.1);
+            -moz-transform: scale(1.1);
+            -o-transform: scale(1.1);
+            -webkit-transform: scale(1.1);
+        }
+    }
+}
