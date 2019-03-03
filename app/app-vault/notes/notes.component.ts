@@ -4,6 +4,7 @@ import { Notify } from "../../providers/notification.service";
 import { NotesService } from "../providers/notes.service";
 import { Note } from "../../models/note.interface";
 import { ApiResponse } from "../../models/api-response.interface";
+import { ErrorHandlerService } from "../../providers/error-handler.service";
 
 @Component({
     selector: "app-vault-notes",
@@ -16,7 +17,8 @@ export class NotesComponent {
     constructor(
         private router: Router,
         private notesService: NotesService,
-        private notify: Notify
+        private notify: Notify,
+        private errorHandler: ErrorHandlerService
     ) {
         this.notesService.getAll().subscribe(
             (success: ApiResponse) => {
@@ -26,7 +28,7 @@ export class NotesComponent {
             },
             (error: ApiResponse) => {
                 console.error("@NotesComp: notes error: ", error);
-                this.notify.error(error.message);
+                this.errorHandler.handle(error);
             }
         );
     }

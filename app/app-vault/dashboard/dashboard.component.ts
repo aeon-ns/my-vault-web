@@ -8,6 +8,7 @@ import { Card } from "../../models/card.interface";
 import { PwordsService } from "../providers/pwords.service";
 import { CardsService } from "../providers/cards.service";
 import { ApiResponse } from "../../models/api-response.interface";
+import { ErrorHandlerService } from "../../providers/error-handler.service";
 
 @Component({
     selector: "app-vault-dashboard",
@@ -24,7 +25,8 @@ export class DashboardComponent {
         private notesService: NotesService,
         private pwordService: PwordsService,
         private cardService: CardsService,
-        private notify: Notify
+        private notify: Notify,
+        private errorHandler: ErrorHandlerService
     ) {
         this.notesService.getAll().subscribe(
             (success: ApiResponse) => {
@@ -34,7 +36,7 @@ export class DashboardComponent {
             },
             (error: ApiResponse) => {
                 console.error("@DashboardComp: notes error: ", error);
-                this.notify.error(error.message);
+                this.errorHandler.handle(error);
             }
         );
         this.pwordService.getAll().subscribe(
@@ -45,7 +47,7 @@ export class DashboardComponent {
             },
             (error: ApiResponse) => {
                 console.error("@DashboardComp: pwords error: ", error);
-                this.notify.error(error.message);
+                this.errorHandler.handle(error);
             }
         );
         this.cardService.getAll().subscribe(
@@ -56,7 +58,7 @@ export class DashboardComponent {
             },
             (error: ApiResponse) => {
                 console.error("@DashboardComp: cards error: ", error);
-                this.notify.error(error.message);
+                this.errorHandler.handle(error);
             }
         );
     }

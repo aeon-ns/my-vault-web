@@ -1,5 +1,6 @@
 export interface ApiResponse {
-    success: boolean,
+    success?: boolean,
     message: string,
-    data?: any
+    data?: any,
+    status?: any
 }

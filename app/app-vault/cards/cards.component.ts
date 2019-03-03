@@ -4,6 +4,7 @@ import { Notify } from "../../providers/notification.service";
 import { Card } from "../../models/card.interface";
 import { CardsService } from "../providers/cards.service";
 import { ApiResponse } from "../../models/api-response.interface";
+import { ErrorHandlerService } from "../../providers/error-handler.service";
 
 @Component({
     selector: "app-vault-dashboard",
@@ -16,7 +17,8 @@ export class CardsComponent {
     constructor(
         private router: Router,
         private cardService: CardsService,
-        private notify: Notify
+        private notify: Notify,
+        private errorHandler: ErrorHandlerService
     ) {
         this.cardService.getAll().subscribe(
             (success: ApiResponse) => {
@@ -26,7 +28,7 @@ export class CardsComponent {
             },
             (error: ApiResponse) => {
                 console.error("@CardsComp: cards error: ", error);
-                this.notify.error(error.message);
+                this.errorHandler.handle(error);
             }
         );
     }

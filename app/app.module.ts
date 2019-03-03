@@ -15,6 +15,7 @@ import { LoginComponent } from "./components/login/login.component";
 import { RegisterComponent } from "./components/register/register.component";
 
 /* Our Providers */
+import { ErrorHandlerService } from "./providers/error-handler.service";
 import { UserService } from "./providers/user.service";
 import { Notify } from "./providers/notification.service";
 
@@ -35,7 +36,7 @@ import { ROUTES } from "./app.routes";
         RegisterComponent,
         NotFoundComponent
     ],
-    providers: [UserService, Notify],
+    providers: [ErrorHandlerService, UserService, Notify],
     bootstrap: [AppComponent]
 })
 export class AppModule {}

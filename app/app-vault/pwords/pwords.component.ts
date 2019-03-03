@@ -4,6 +4,7 @@ import { Notify } from "../../providers/notification.service";
 import { PwordsService } from "../providers/pwords.service";
 import { Pword } from "../../models/pword.interface";
 import { ApiResponse } from "../../models/api-response.interface";
+import { ErrorHandlerService } from "../../providers/error-handler.service";
 
 @Component({
     selector: "app-vault-dashboard",
@@ -16,7 +17,8 @@ export class PwordsComponent {
     constructor(
         private router: Router,
         private pwordService: PwordsService,
-        private notify: Notify
+        private notify: Notify,
+        private errorHandler: ErrorHandlerService
     ) {
         this.pwordService.getAll().subscribe(
             (success: ApiResponse) => {
@@ -26,7 +28,7 @@ export class PwordsComponent {
             },
             (error: ApiResponse) => {
                 console.error("@PwordsComp: pwords error: ", error);
-                this.notify.error(error.message);
+                this.errorHandler.handle(error);
             }
         );
     }
