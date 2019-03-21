@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, ViewChild, ElementRef, AfterViewInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { UserService } from "../../providers/user.service";
 import { Notify } from "../../providers/notification.service";
@@ -9,12 +9,19 @@ import { ApiResponse } from "../../models/api-response.interface";
     styleUrls: ["login.component.scss"],
     templateUrl: "login.component.html"
 })
-export class LoginComponent {
+export class LoginComponent implements AfterViewInit {
+
+    @ViewChild('username') username: ElementRef;
+
     constructor(
         private router: Router,
         private userService: UserService,
         private notify: Notify
     ) {}
+
+    ngAfterViewInit() {
+        this.username.nativeElement.focus();
+    }
 
     logIn(username: string, password: string) {
         if (!username || !password) {

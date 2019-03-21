@@ -10,6 +10,9 @@ export class ErrorHandlerService {
 
     public handle(error: ApiResponse) {
         if(error.message) {
+            if(error.status === 401) {
+                this.notify.clearAll();
+            }
             this.notify.error(error.message);
         }
         switch (error.status) {

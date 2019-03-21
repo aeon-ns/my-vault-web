@@ -1,0 +1,132 @@
+<div
+    #noteModal
+    [ngClass]="{ 'uk-flex-top': !fullView, 'uk-modal-full': fullView }"
+    uk-modal
+>
+    <div
+        class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical"
+        [ngClass]="{ 'full-height': fullView }"
+    >
+        <div class="top-right-icon-bar">
+            <a
+                *ngIf="!fullView"
+                (click)="fullView = !fullView"
+                class="uk-icon-link"
+                uk-icon="expand"
+                uk-tooltip="Expanded view"
+            ></a>
+            <a
+                *ngIf="fullView"
+                (click)="fullView = !fullView"
+                class="uk-icon-link"
+                uk-icon="shrink"
+                uk-tooltip="Normal view"
+            ></a>
+            <a
+                class="uk-icon-link"
+                (click)="close()"
+                uk-icon="close"
+                uk-tooltip="Close"
+            ></a>
+        </div>
+
+        <form (ngSubmit)="save(form)" #form="ngForm" novalidate>
+            <fieldset class="uk-fieldset">
+                <legend class="uk-legend">
+                    {{ mode === 'add' ? 'New Note' : 'Edit Note' }}
+                </legend>
+
+                <div class="uk-margin form-group">
+                    <input
+                        name="title"
+                        #title="ngModel"
+                        [(ngModel)]="note.title"
+                        type="text"
+                        class="uk-input uk-form-blank uk-form-large"
+                        [ngClass]="{
+                            'invalid-input':
+                                form.submitted && title.errors?.required
+                        }"
+                        placeholder="Enter title here..."
+                        required
+                    />
+                    <span
+                        *ngIf="form.submitted && title.errors?.required"
+                        class="invalid-msg"
+                    >
+                        <i class="fas fa-exclamation-triangle"></i> Please enter
+                        a title.
+                    </span>
+                </div>
+
+                <hr />
+
+                <div class="uk-margin form-group">
+                    <textarea
+                        name="note"
+                        #noteText="ngModel"
+                        [(ngModel)]="note.note"
+                        class="uk-textarea uk-form-blank"
+                        [ngClass]="{
+                            'full-textarea': fullView,
+                            'invalid-input':
+                                form.submitted && noteText.errors?.required
+                        }"
+                        rows="5"
+                        placeholder="Type your note here..."
+                        required
+                    ></textarea>
+                    <span
+                        *ngIf="form.submitted && noteText.errors?.required"
+                        class="invalid-msg"
+                    >
+                        <i class="fas fa-exclamation-triangle"></i> Please enter
+                        a note.
+                    </span>
+                </div>
+
+                <div class="uk-margin form-group uk-grid">
+                    <div class="uk-width-1-2">
+                        <label for="pinned">Pin&nbsp;</label>
+                        <input
+                            id="pinned"
+                            name="pinned"
+                            #pinned="ngModel"
+                            [(ngModel)]="note.pinned"
+                            class="uk-checkbox"
+                            type="checkbox"
+                        />
+                    </div>
+                    <div class="uk-width-1-2 uk-text-right">
+                        <label for="account" class="uk-width-1-4"
+                            >Tag&nbsp;</label
+                        >
+                        <select
+                            id="account"
+                            name="account"
+                            #account="ngModel"
+                            [(ngModel)]="note.account"
+                            class="uk-select uk-form-small uk-width-3-4"
+                        >
+                            <option [ngValue]="false">Personal</option>
+                            <option [ngValue]="true">Work</option>
+                        </select>
+                    </div>
+                </div>
+            </fieldset>
+            <hr class="uk-divider-icon" />
+            <fieldset class="uk-fieldset uk-float-right">
+                <button
+                    type="button"
+                    class="uk-button uk-button-default"
+                    (click)="close()"
+                >
+                    Cancel
+                </button>
+                <button type="submit" class="uk-button uk-button-primary">
+                    Save
+                </button>
+            </fieldset>
+        </form>
+    </div>
+</div>

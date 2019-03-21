@@ -7,6 +7,7 @@ import { ApiResponse } from "../models/api-response.interface";
 interface Nav {
     link: string;
     name: string;
+    icon: string;
     exact: boolean;
 }
 
@@ -20,21 +21,25 @@ export class VaultComponent {
         {
             link: "/vault",
             name: "Home",
+            icon: "fas fa-home",
             exact: true
         },
         {
             link: "/vault/notes",
             name: "Notes",
+            icon: "fas fa-sticky-note",
             exact: true
         },
         {
             link: "/vault/pwords",
             name: "Passwords",
+            icon: "fas fa-key",
             exact: false
         },
         {
             link: "/vault/cards",
             name: "Cards",
+            icon: "fas fa-credit-card",
             exact: false
         }
     ];

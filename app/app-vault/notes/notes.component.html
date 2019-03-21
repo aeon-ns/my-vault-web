@@ -1,20 +1,31 @@
 <div>
     <div class="sub-nav">
         <div class="uk-width-1-1 uk-inline">
-            Your notes :
+            Your notes
             <span
-                class="uk-float-right uk-badge"
+                class=" uk-badge"
                 [innerHtml]="'Total: ' + notes?.length"
             ></span>
+            :
+            <div class="uk-float-right">
+                <span>
+                    <button
+                        class="uk-button uk-button-small uk-button-primary"
+                        (click)="addNote()"
+                    >
+                        Add Note
+                    </button>
+                </span>
+            </div>
         </div>
     </div>
 
     <div class="notes-container">
-        <div class="note" *ngFor="let note of notes">
+        <div class="note" *ngFor="let note of notes" (click)="editNote(note)">
             <div class="uk-card uk-card-default uk-card-body">
                 <span>
                     <span uk-icon="tag"></span>
-                    {{ note.account ? "Work" : "Personal" }}
+                    {{ note.account ? 'Work' : 'Personal' }}
                 </span>
                 <span *ngIf="note.pinned" uk-icon="bookmark"></span>
 
@@ -24,3 +35,9 @@
         </div>
     </div>
 </div>
+
+<!-- Note Modal -->
+<note-modal
+    [open]="openNoteModal"
+    (noteEmitter)="onNoteSave($event)"
+></note-modal>

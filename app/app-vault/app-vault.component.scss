@@ -1,14 +1,27 @@
 .vault-content {
     background-color: #3a4250;
-    background-image: url("images/dark-honeycomb.png");
-    min-height: calc(100vh - 110px);
+    // background-image: url("images/dark-honeycomb.png");
+    background-image: url("../../images/joanna-kosinska-129039-unsplash.jpg");
+    // background-image: url("../../images/joanna-kosinska-254406-unsplash.jpg");
+    // background-image: url("../../images/joanna-kosinska-289519-unsplash.jpg");
+    // background-image: url("../../images/joanna-kosinska-439233-unsplash.jpg");
+    // Photo by Joanna Kosinska on Unsplash
+    background-size: cover;
+    position: relative;
+    height: calc(100vh - 170px);
     color: #fff;
     padding: 15px;
     overflow-x: hidden;
     overflow-y: auto;
+    margin-bottom: 60px;
 }
 
 nav {
+    box-shadow: 0px 1px 8px #000;
+    z-index: 1;
+    i {
+        font-size: 18px;
+    }
     .active {
         background-color: #3a4250;
         color: #fff;

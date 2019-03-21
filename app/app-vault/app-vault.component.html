@@ -8,6 +8,8 @@
             [routerLinkActiveOptions]="{ exact: item.exact }"
         >
             <span>
+                <i [ngClass]="item.icon"></i>
+                <br>
                 {{ item.name }}
             </span>
         </button>

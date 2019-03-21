@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, ElementRef, ViewChild, AfterViewInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { UserService } from "../../providers/user.service";
 import { Notify } from "../../providers/notification.service";
@@ -10,12 +10,19 @@ import { User } from "../../models/user.interface";
     styleUrls: ["register.component.scss"],
     templateUrl: "register.component.html"
 })
-export class RegisterComponent {
+export class RegisterComponent implements AfterViewInit {
+
+    @ViewChild('firstname') firstname: ElementRef;
+    
     constructor(
         private router: Router,
         private userService: UserService,
         private notify: Notify
     ) {}
+
+    ngAfterViewInit() {
+        this.firstname.nativeElement.focus();
+    }
 
     register(
         username: string,

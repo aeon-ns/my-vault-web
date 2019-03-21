@@ -4,7 +4,7 @@ declare var UIkit: any;
 @Injectable()
 export class Notify {
     private NOTIFICATION_POSITION: string = "bottom-center";
-    private NOTIFICATION_TIMEOUT: number = 5000;
+    private NOTIFICATION_TIMEOUT: number = 3000;
 
     constructor() {}
 
@@ -42,5 +42,9 @@ export class Notify {
             pos: this.NOTIFICATION_POSITION,
             timeout: this.NOTIFICATION_TIMEOUT
         });
+    }
+
+    clearAll() {
+        UIkit.notification.closeAll();
     }
 }
