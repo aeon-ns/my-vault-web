@@ -1,6 +1,51 @@
 <div>
-    <h3>Passwords :</h3>
-    <span>You have following pwords:</span>
+    <div class="sub-nav">
+        <div class="uk-width-1-1 uk-inline">
+            Your Passwords
+            <span
+                class=" uk-badge"
+                [innerHtml]="'Total: ' + pwords?.length"
+            ></span>
+            :
+            <div class="uk-float-right">
+                <span>
+                    <button
+                        class="uk-button uk-button-small uk-button-primary"
+                        (click)="addPword()"
+                    >
+                        Add Pword
+                    </button>
+                </span>
+            </div>
+        </div>
+    </div>
 
-    <p>Pwords: {{ pwords?.length }}</p>
+    <div class="pwords-container">
+        <div
+            class="pword"
+            *ngFor="let pword of pwords"
+            (click)="editPword(pword)"
+        >
+            <div class="icon">
+                <i class="fas fa-key"></i>
+            </div>
+            <span class="title" [innerHtml]="pword.title"></span>
+            <span class="sub-info">
+                <span class="pin">
+                    <i *ngIf="pword.pinned" class="fas fa-star"></i>
+                    <i *ngIf="!pword.pinned" class="far fa-star"></i>
+                </span>
+                <span class="tag">
+                    <span class="fas fa-tags"></span>
+                    {{ pword.account ? 'Work' : 'Personal' }}
+                </span>
+            </span>
+        </div>
+    </div>
 </div>
+
+<!-- Pword Modal -->
+<pword-modal
+    [open]="openPwordModal"
+    (pwordEmitter)="onPwordSave($event)"
+></pword-modal>

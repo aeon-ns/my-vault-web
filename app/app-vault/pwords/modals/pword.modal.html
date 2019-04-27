@@ -1,0 +1,246 @@
+<div
+    #pwordModal
+    [ngClass]="{ 'uk-flex-top': !fullView, 'uk-modal-full': fullView }"
+    uk-modal
+>
+    <div
+        class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical"
+        [ngClass]="{ 'full-height': fullView }"
+    >
+        <div class="top-right-icon-bar">
+            <a
+                *ngIf="!fullView"
+                (click)="fullView = !fullView"
+                class="uk-icon-link"
+                uk-icon="expand"
+                uk-tooltip="Expanded view"
+            ></a>
+            <a
+                *ngIf="fullView"
+                (click)="fullView = !fullView"
+                class="uk-icon-link"
+                uk-icon="shrink"
+                uk-tooltip="Normal view"
+            ></a>
+            <a
+                class="uk-icon-link"
+                (click)="close()"
+                uk-icon="close"
+                uk-tooltip="Close"
+            ></a>
+        </div>
+
+        <form (ngSubmit)="save(form)" #form="ngForm" novalidate>
+            <fieldset class="uk-fieldset">
+                <legend class="uk-legend">
+                    {{ mode === 'add' ? 'New Password' : 'Edit Password' }}
+                </legend>
+
+                <div class="uk-margin form-group">
+                    <input
+                        name="title"
+                        #title="ngModel"
+                        [(ngModel)]="pword.title"
+                        type="text"
+                        class="uk-input uk-form-blank"
+                        [ngClass]="{
+                            'invalid-input':
+                                form.submitted && title?.errors?.required
+                        }"
+                        placeholder="Enter title here..."
+                        required
+                    />
+                    <span
+                        *ngIf="form.submitted && title?.errors?.required"
+                        class="invalid-msg"
+                    >
+                        <i class="fas fa-exclamation-triangle"></i> Please enter
+                        a title.
+                    </span>
+                </div>
+
+                <hr />
+
+                <div class="uk-margin form-group uk-grid">
+                    <div class="uk-width-1-2">
+                        <label for="username" class="uk-form-label">
+                            Username
+                        </label>
+                        <input
+                            id="username"
+                            name="username"
+                            #username="ngModel"
+                            [(ngModel)]="pword.username"
+                            type="text"
+                            class="uk-input"
+                            placeholder="Enter username here..."
+                        />
+                    </div>
+
+                    <div class="uk-width-1-2">
+                        <label for="password" class="uk-form-label">
+                            Password
+                        </label>
+                        <div>
+                            <div class="uk-inline uk-width-1-1">
+                                <input
+                                    id="password"
+                                    name="password"
+                                    #password="ngModel"
+                                    [(ngModel)]="pword.password"
+                                    [type]="
+                                        revealPassword ? 'text' : 'password'
+                                    "
+                                    class="uk-input"
+                                    placeholder="Enter password here..."
+                                />
+                                <button
+                                    type="button"
+                                    [title]="revealPassword ? 'Hide' : 'Reveal'"
+                                    class="uk-form-icon uk-form-icon-flip btn-icon"
+                                    (click)="revealPassword = !revealPassword"
+                                >
+                                    <i
+                                        class="far"
+                                        [ngClass]="{
+                                            'fa-eye-slash': revealPassword,
+                                            'fa-eye': !revealPassword
+                                        }"
+                                    ></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="uk-margin form-group uk-grid"
+                    *ngFor="
+                        let customField of pword.customFields;
+                        let i = index
+                    "
+                >
+                    <div class="custom-field-input">
+                        <label [for]="'key-' + i" class="uk-form-label">
+                            Key
+                        </label>
+                        <input
+                            [id]="'key-' + i"
+                            [name]="'key-' + i"
+                            [(ngModel)]="customField.key"
+                            type="text"
+                            class="uk-input"
+                            placeholder="Enter key here..."
+                        />
+                    </div>
+                    <div class="custom-field-input">
+                        <label for="password" class="uk-form-label">
+                            Value
+                        </label>
+                        <div>
+                            <div class="uk-inline uk-width-1-1">
+                                <input
+                                    [id]="'value-' + i"
+                                    [name]="'value-' + i"
+                                    [(ngModel)]="customField.value"
+                                    [type]="
+                                        customField.revealPassword
+                                            ? 'text'
+                                            : 'password'
+                                    "
+                                    class="uk-input"
+                                    placeholder="Enter value here..."
+                                />
+                                <button
+                                    type="button"
+                                    [title]="
+                                        customField.revealPassword
+                                            ? 'Hide'
+                                            : 'Reveal'
+                                    "
+                                    class="uk-form-icon uk-form-icon-flip btn-icon"
+                                    (click)="
+                                        customField.revealPassword = !customField.revealPassword
+                                    "
+                                >
+                                    <i
+                                        class="far"
+                                        [ngClass]="{
+                                            'fa-eye-slash':
+                                                customField.revealPassword,
+                                            'fa-eye': !customField.revealPassword
+                                        }"
+                                    ></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="custom-field-action">
+                        <div class="uk-position-center-right">
+                            <a
+                                title="Remove this field"
+                                uk-icon="icon: trash"
+                                (click)="removeCustomField(i)"
+                            ></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="uk-margin form-group uk-grid">
+                    <div class="uk-width-1-2">
+                        <label for="pinned" class="uk-form-label">
+                            Pin&nbsp;
+                        </label>
+                        <input
+                            id="pinned"
+                            name="pinned"
+                            #pinned="ngModel"
+                            [(ngModel)]="pword.pinned"
+                            class="uk-checkbox"
+                            type="checkbox"
+                        />
+                    </div>
+                    <div class="uk-width-1-2 uk-text-right">
+                        <label for="account" class="uk-form-label uk-width-1-4">
+                            Tag&nbsp;
+                        </label>
+                        <select
+                            id="account"
+                            name="account"
+                            #account="ngModel"
+                            [(ngModel)]="pword.account"
+                            class="uk-select uk-form-small uk-width-3-4"
+                        >
+                            <option [ngValue]="false">Personal</option>
+                            <option [ngValue]="true">Work</option>
+                        </select>
+                    </div>
+                </div>
+            </fieldset>
+            <hr class="uk-divider-icon" />
+            <div>
+                <fieldset class="uk-fieldset uk-float-left">
+                    <button
+                        type="button"
+                        class="uk-button uk-button-default"
+                        (click)="addCustomField()"
+                    >
+                        Add Field
+                    </button>
+                </fieldset>
+                <fieldset class="uk-fieldset uk-float-right">
+                    <button
+                        type="button"
+                        class="uk-button uk-button-default"
+                        (click)="close()"
+                    >
+                        Cancel
+                    </button>
+                    <button type="submit" class="uk-button uk-button-primary">
+                        Save
+                    </button>
+                </fieldset>
+            </div>
+        </form>
+    </div>
+</div>

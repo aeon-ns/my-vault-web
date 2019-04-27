@@ -14,7 +14,10 @@ import { DashboardComponent } from "./dashboard/dashboard.component";
 import { NotesComponent } from "./notes/notes.component";
 import { PwordsComponent } from "./pwords/pwords.component";
 import { CardsComponent } from "./cards/cards.component";
+
+// Vault - Modal - Components
 import { NoteModal } from "./notes/modals/note.modal";
+import { PwordModal } from "./pwords/modals/pword.modal";
 
 // Vault - Providers
 import { NotesService } from "./providers/notes.service";
@@ -35,7 +38,8 @@ import { CardsService } from "./providers/cards.service";
         NotesComponent,
         PwordsComponent,
         CardsComponent,
-        NoteModal
+        NoteModal,
+        PwordModal
     ],
     providers: [NotesService, PwordsService, CardsService],
     exports: []
