@@ -51,11 +51,11 @@ export class NoteModal implements OnInit {
         this.open.subscribe((subject: NoteSubject) => {
             this.modal = UIkit.modal(this.noteModal.nativeElement, {});
             this.modal.show();
+            this.mode = subject.mode;
             if (!subject.note) {
                 return this.resetNote();
             }
             this.note = Object.assign({}, subject.note);
-            this.mode = subject.mode;
         });
     }
 
