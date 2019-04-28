@@ -21,13 +21,36 @@
     padding: 18px;
     .uk-card {
         cursor: pointer;
-        background-image: url("images/white-waves.png");
+        // background-image: url('images/white-waves.png');
         transition: all 0.25s ease-in-out;
         -moz-transition: all 0.25s ease-in-out;
         -o-transition: all 0.25s ease-in-out;
         -webkit-transition: all 0.25s ease-in-out;
-
+        position: relative;
         width: 320px;
+        border-radius: 4px;
+        border: 2px solid lightyellow;
+
+        .uk-card-title {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-family: Acme;
+        }
+
+        .tag > span {
+            color: #514885;
+        }
+        .pin {
+            color: #ffb90f;
+            padding: 0 4px;
+            font-size: 18px;
+        }
+
+        & > span {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+        }
 
         &:hover {
             box-shadow: 0px 0px 2px #444;
@@ -35,6 +58,11 @@
             -moz-transform: scale(1.1);
             -o-transform: scale(1.1);
             -webkit-transform: scale(1.1);
+        }
+
+        p {
+            font-family: Kalam;
+            font-size: 16px;
         }
     }
 }

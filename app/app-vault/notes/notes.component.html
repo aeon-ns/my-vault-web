@@ -24,10 +24,15 @@
         <div class="note" *ngFor="let note of notes" (click)="editNote(note)">
             <div class="uk-card uk-card-default uk-card-body">
                 <span>
-                    <span uk-icon="tag"></span>
-                    {{ note.account ? 'Work' : 'Personal' }}
+                    <span class="pin">
+                        <i *ngIf="note.pinned" class="fas fa-star"></i>
+                        <i *ngIf="!note.pinned" class="far fa-star"></i>
+                    </span>
+                    <span class="tag">
+                        <span class="fas fa-tags"></span>
+                        {{ note.account ? 'Work' : 'Personal' }}
+                    </span>
                 </span>
-                <span *ngIf="note.pinned" uk-icon="bookmark"></span>
 
                 <h3 class="uk-card-title" [innerHtml]="note.title"></h3>
                 <p [innerHtml]="note.note"></p>

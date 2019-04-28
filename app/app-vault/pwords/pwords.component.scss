@@ -12,7 +12,7 @@
 
 .pwords-container {
     display: flex;
-    flex-flow: column wrap;
+    flex-flow: wrap;
     justify-content: center;
     padding: 10px 0;
     position: relative;
@@ -21,13 +21,16 @@
 
 .pword {
     position: relative;
-    margin: 8px;
+    margin: 10px;
     padding: 16px;
     padding-left: 40px;
     cursor: pointer;
     background: #fff;
     border-radius: 4px;
     color: #333;
+    width: 100%;
+    max-width: 440px;
+
     &::before {
         content: '';
         position: absolute;
@@ -45,7 +48,7 @@
 
     .icon {
         i.fas.fa-key {
-            color: #167d97;
+            color: #b06ab3;
             font-size: 18px;
         }
         position: absolute;
@@ -54,7 +57,10 @@
     }
 
     .title {
-        padding-right: 120px;
+        padding-right: 10px;
+        font-family: Acme;
+        // font-weight: bold;
+        font-size: 18px;
     }
 
     .sub-info {
@@ -68,5 +74,15 @@
         color: #ffb90f;
         padding: 0 4px;
         font-size: 18px;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+        background-image: linear-gradient(30deg, #514885, #b06ab3);
+        background-image: -webkit-linear-gradient(30deg, #514885, #b06ab3);
+        background-image: -moz-linear-gradient(30deg, #514885, #b06ab3);
+        background-image: -o-linear-gradient(30deg, #514885, #b06ab3);
+        color: white;
     }
 }
